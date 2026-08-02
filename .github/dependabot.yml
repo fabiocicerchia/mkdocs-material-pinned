@@ -1,14 +1,20 @@
 version: 2
 updates:
-  # Keep GitHub Actions pinned versions fresh.
+  # Keep the pinned action SHAs in the workflows fresh.
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
 
-  # Uncomment and set the ecosystem for your project's dependencies.
-  # ecosystems: npm, pip, gomod, cargo, bundler, maven, composer, nuget, ...
-  # - package-ecosystem: npm
-  #   directory: /
-  #   schedule:
-  #     interval: weekly
+  # Base image in the Dockerfile.
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+
+  # requirements.txt is the product: the pinned docs toolchain this image ships.
+  # A bump here is a new image tag, so these PRs are releases, not chores.
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly

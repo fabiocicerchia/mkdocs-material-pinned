@@ -8,16 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-### Changed
-### Deprecated
-### Removed
-### Fixed
-### Security
 
-## [0.1.0] - YYYY-MM-DD
+- MkDocs + Material image with the whole plugin set pinned in
+  `requirements.txt`; image tag mirrors the bundled `mkdocs-material`
+  version. `mike` included for versioned deploys.
 
-### Added
-- Initial release.
-
-[Unreleased]: https://github.com/fabiocicerchia/mkdocs-material-pinned/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/fabiocicerchia/mkdocs-material-pinned/releases/tag/v0.1.0
+Not yet released.

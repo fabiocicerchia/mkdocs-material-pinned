@@ -1,5 +1,7 @@
 site_name: mkdocs-material-pinned
-site_description: One-line description.
+site_description: >-
+  MkDocs + Material with every plugin version-pinned, so a docs build that
+  worked last month still works today.
 repo_url: https://github.com/fabiocicerchia/mkdocs-material-pinned
 docs_dir: docs
 
