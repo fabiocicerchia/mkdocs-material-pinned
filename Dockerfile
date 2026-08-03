@@ -3,8 +3,8 @@
 FROM python:3.13-slim-bookworm
 LABEL org.opencontainers.image.title="mkdocs-material-pinned" \
       org.opencontainers.image.description="MkDocs + Material + common plugins, version-pinned for reproducible docs builds" \
-      org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.source="https://github.com/fabiocicerchia/freelancing"
+      org.opencontainers.image.licenses="Apache-2.0" \
+      org.opencontainers.image.source="https://github.com/fabiocicerchia/mkdocs-material-pinned"
 # git is needed by git-revision-date-localized and mike
 RUN apt-get update && apt-get install -y --no-install-recommends git \
  && rm -rf /var/lib/apt/lists/* \
