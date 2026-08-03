@@ -1,0 +1,98 @@
+kind: Deployment
+replicaCount: 1
+
+image:
+  repository: ghcr.io/fabiocicerchia/mkdocs-material-pinned
+  tag: ""
+  pullPolicy: IfNotPresent
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+command: []
+args: ["serve", "--dev-addr=0.0.0.0:8000"]
+
+env: {}
+envFrom: []
+
+# The docs tree itself. For anything beyond a single page, mount a PVC or a
+# git-sync sidecar via extraVolumes instead of inlining here.
+config:
+  mountPath: /docs
+  files: {}
+
+# Only used when kind: CronJob.
+cron:
+  schedule: "0 * * * *"
+  suspend: false
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  restartPolicy: OnFailure
+  backoffLimit: 3
+
+service:
+  enabled: true
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+  annotations: {}
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  host: docs.local
+  path: /
+  pathType: Prefix
+  tls: []
+
+livenessProbe:
+  httpGet: {path: /, port: http}
+  initialDelaySeconds: 15
+readinessProbe:
+  httpGet: {path: /, port: http}
+
+resources:
+  requests: {cpu: 100m, memory: 256Mi}
+  limits: {memory: 512Mi}
+
+persistence:
+  enabled: false
+  mountPath: /docs
+  existingClaim: ""
+  size: 1Gi
+  storageClass: ""
+  accessModes: [ReadWriteOnce]
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+rbac:
+  create: false
+  clusterWide: true
+  rules:
+    - apiGroups: ["*"]
+      resources: ["*"]
+      verbs: ["get", "list", "watch"]
+
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile: {type: RuntimeDefault}
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities: {drop: ["ALL"]}
+
+extraVolumes: []
+extraVolumeMounts: []
+
+podAnnotations: {}
+podLabels: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
