@@ -9,6 +9,7 @@ LABEL org.opencontainers.image.title="mkdocs-material-pinned" \
 RUN apt-get update && apt-get install -y --no-install-recommends git \
  && rm -rf /var/lib/apt/lists/* \
  && useradd -m -u 10001 docs
+COPY NOTICE /NOTICE
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 USER 10001
