@@ -14,29 +14,28 @@ Thanks for taking the time to contribute!
 - Update `docs/` and `examples/` when behavior changes.
 - Ensure CI (`code-quality` + `security`) passes.
 
-Don't edit `CHANGELOG.md` by hand — it's generated from commit messages by
-release-please (see [Releases](#releases)).
+Keep `CHANGELOG.md` up to date by hand — note the mkdocs-material version
+each entry ships (see [Releases](#releases)).
 
 ## Commit messages
 
 Use [Conventional Commits](https://www.conventionalcommits.org/): `feat:`,
-`fix:`, `docs:`, `chore:`, etc. This keeps history readable and drives the
-version bump: `fix:` → patch, `feat:` → minor, `feat!:` or a
-`BREAKING CHANGE:` footer → major.
+`fix:`, `docs:`, `chore:`, etc. They keep history readable. They do **not**
+drive the version here — the mkdocs-material pin does.
 
 ## Releases
 
-Releases are automated by [release-please](.github/workflows/release.yml);
-you don't tag or edit the changelog manually.
+The image tag is the bundled mkdocs-material version, so the pin is the
+release — there is no separate semver for this repo.
 
-1. Merge `feat:`/`fix:` PRs into `main` as normal — **no tag is created**.
-2. release-please keeps an open **release PR** ("chore: release X.Y.Z"),
-   recalculating the next version and changelog on every merge.
-3. When you're ready to ship, **merge the release PR** — that (and only that)
-   creates the `vX.Y.Z` tag and the GitHub Release.
+1. Bump `mkdocs-material==` in `requirements.txt` on `main`.
+2. [publish.yml](.github/workflows/publish.yml) reads that pin, builds,
+   smoke-tests, and pushes `ghcr.io/fabiocicerchia/mkdocs-material-pinned`
+   tagged with the pin and `latest`.
+3. A rebuild with no pin change is a manual `workflow_dispatch` run.
 
-So `main` is not released per-commit: changes accumulate into the release PR,
-and merging it is the deliberate release step.
+Changes that don't touch `requirements.txt` or the `Dockerfile` don't publish
+anything — there is nothing new to ship.
 
 ## Pull requests
 

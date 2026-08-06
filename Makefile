@@ -1,6 +1,6 @@
-IMAGE     ?= fabiocicerchia/mkdocs-material-pinned
+IMAGE     ?= ghcr.io/fabiocicerchia/mkdocs-material-pinned
 # Tag mirrors the bundled mkdocs-material version.
-VERSION   ?= 9.6.15
+VERSION   ?= 9.7.7
 PLATFORMS ?= linux/amd64,linux/arm64
 
 .PHONY: build lint test push release help
