@@ -38,15 +38,19 @@ docker run --rm -p 8000:8000 -v "$PWD:/docs" fabiocicerchia/mkdocs-material-pinn
 Strict CI build:
 
 ```sh
-docker run --rm -v "$PWD:/docs" fabiocicerchia/mkdocs-material-pinned:9.6.15 build --strict
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/docs" \
+  fabiocicerchia/mkdocs-material-pinned:9.6.15 build --strict
 ```
 
 GitHub Pages deploy with mike:
 
 ```sh
-docker run --rm -v "$PWD:/docs" --entrypoint mike \
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/docs" --entrypoint mike \
   fabiocicerchia/mkdocs-material-pinned deploy --push --update-aliases 1.2 latest
 ```
+
+The image runs as uid 10001, so any command that writes back into the mount
+needs `--user` — otherwise `site/` comes out owned by a user you are not.
 
 ## Tags
 

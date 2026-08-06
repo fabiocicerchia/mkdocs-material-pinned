@@ -19,11 +19,15 @@ container. Live reload works through the bind mount.
 ## Build it the way CI will
 
 ```sh
-docker run --rm -v "$PWD:/docs" \
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/docs" \
   fabiocicerchia/mkdocs-material-pinned:9.6.15 build --strict
 ```
 
-Two deliberate differences from the preview command:
+Three deliberate differences from the preview command:
+
+**It runs as you.** The image runs as uid 10001. `serve` only reads the mount,
+but `build` writes `site/` back into it — without `--user` that output is owned
+by uid 10001 and your next `rm -rf site` fails.
 
 **The tag is pinned.** `9.6.15` is the bundled `mkdocs-material` version — that
 is what the tag means here. `latest` is for previewing; a docs build that can
@@ -61,7 +65,7 @@ to the epoch — pages dated 1 January 1970 with no error anywhere.
 overridden:
 
 ```sh
-docker run --rm -v "$PWD:/docs" --entrypoint mike \
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/docs" --entrypoint mike \
   fabiocicerchia/mkdocs-material-pinned \
   deploy --push --update-aliases 1.2 latest
 ```
@@ -70,7 +74,7 @@ This commits the built site to the `gh-pages` branch and pushes, so it needs
 git credentials in the container and a non-shallow checkout. Set the alias once:
 
 ```sh
-docker run --rm -v "$PWD:/docs" --entrypoint mike \
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/docs" --entrypoint mike \
   fabiocicerchia/mkdocs-material-pinned set-default latest
 ```
 

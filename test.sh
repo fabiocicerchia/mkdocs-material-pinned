@@ -14,7 +14,10 @@ plugins:
   - minify
   - awesome-pages
 YAML
-docker run --rm -v "$TMP:/docs" "$IMAGE" build --strict
+# --user: the image runs as uid 10001, which cannot read a 0700 mktemp dir, and
+# anything it did write into the mount would be owned by 10001 and undeletable
+# by the `rm -rf` below. Building as the caller fixes both.
+docker run --rm --user "$(id -u):$(id -g)" -v "$TMP:/docs" "$IMAGE" build --strict
 [ -f "$TMP/site/index.html" ] || { echo "FAIL: no site built" >&2; rm -rf "$TMP"; exit 1; }
 rm -rf "$TMP"
 echo PASS
