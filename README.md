@@ -5,6 +5,7 @@
 [![Security](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/security.yml/badge.svg)](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/security.yml)
 [![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](LICENSE)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/fabiocicerchia/mkdocs-material-pinned/badge)](https://securityscorecards.dev/viewer/?uri=github.com/fabiocicerchia/mkdocs-material-pinned)
+[![CI carbon](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/fabiocicerchia/mkdocs-material-pinned/gh-pages/badge.json)](.github/workflows/carbon-badge.yml)
 
 MkDocs + Material theme + the plugins everyone actually uses, **fully
 version-pinned** for reproducible docs builds. The image tag mirrors the
