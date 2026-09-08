@@ -51,7 +51,14 @@ docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/docs" --entrypoint mike \
 ```
 
 The image runs as uid 10001, so any command that writes back into the mount
-needs `--user` — otherwise `site/` comes out owned by a user you are not.
+needs `--user` — otherwise `site/` comes out owned by a user you are not, and
+on a checkout owned by the host user mkdocs cannot create it at all.
+
+Forget it and the build fails with `PermissionError: … '/docs/site'`; the
+entrypoint adds the missing half of that message — the uid it ran as and the
+flag that fixes it. It does **not** quietly build into a writable path
+instead: a `--strict` build that exits 0 having written the site somewhere you
+cannot see is worse than one that fails.
 
 ## Tags
 
