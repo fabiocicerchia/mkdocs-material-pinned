@@ -9,7 +9,7 @@ PLATFORMS ?= linux/amd64,linux/arm64
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
-	  awk 'BEGIN {FS = ":.*?## "}; {printf "  %-10s %s\n", $$1, $$2}'
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  %-10s %s\n", $$1, $$2}'
 
 build: lock-check ## Build the image locally
 	docker build -t $(IMAGE):$(VERSION) .
@@ -21,7 +21,7 @@ lock: ## Regenerate requirements.lock from requirements.txt
 
 lock-check: ## Fail if a pin in requirements.txt is missing from requirements.lock
 	@missing="$$(grep -vE '^[[:space:]]*(#|$$)' requirements.txt | tr -d ' ' | \
-	  while read -r pin; do grep -qiE "^$$pin \\\\$$" requirements.lock || echo "$$pin"; done)"; \
+		while read -r pin; do grep -qiE "^$$pin \\\\$$" requirements.lock || echo "$$pin"; done)"; \
 	[ -z "$$missing" ] || { echo "requirements.lock is stale, missing: $$missing"; echo 'run: make lock'; exit 1; }
 
 lint: ## Lint the Dockerfile
