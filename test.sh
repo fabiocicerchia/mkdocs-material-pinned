@@ -19,5 +19,17 @@ YAML
 # by the `rm -rf` below. Building as the caller fixes both.
 docker run --rm --user "$(id -u):$(id -g)" -v "$TMP:/docs" "$IMAGE" build --strict
 [ -f "$TMP/site/index.html" ] || { echo "FAIL: no site built" >&2; rm -rf "$TMP"; exit 1; }
+
+# ...and without --user it has to say why. mkdocs' own PermissionError names
+# neither the uid nor the fix, which is the whole reason the entrypoint exists.
+# Skipped as root, which can write into the mount and so never hits the case.
+if [ "$(id -u)" -ne 0 ]; then
+  out="$(docker run --rm -v "$TMP:/docs" "$IMAGE" build --strict 2>&1 || true)"
+  case "$out" in
+    *--user*) ;;
+    *) echo "FAIL: unwritable mount gave no hint:" >&2; echo "$out" >&2; rm -rf "$TMP"; exit 1 ;;
+  esac
+fi
+
 rm -rf "$TMP"
 echo PASS
