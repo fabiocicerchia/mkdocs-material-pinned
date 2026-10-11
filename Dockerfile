@@ -1,6 +1,6 @@
 # mkdocs-material-pinned — MkDocs + Material + common plugins, fully pinned
 # for reproducible docs builds. `docs as code` without version drift.
-FROM python:3.14-slim-bookworm@sha256:82bc3c539b8813ada9d68c63b40158fa002f7f33de9bf3312a3dfdc0620dff56
+FROM python:3.14-slim-bookworm@sha256:48b13b003dda20b16f9442b8475aa05fe21bf6579a8c881db92ffb4d8fd20f83
 LABEL org.opencontainers.image.title="mkdocs-material-pinned" \
       org.opencontainers.image.description="MkDocs + Material + common plugins, version-pinned for reproducible docs builds" \
       org.opencontainers.image.licenses="Apache-2.0" \
