@@ -5,6 +5,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     groups:
       # Everything else rides in one pull request rather than one each.
       actions:
@@ -15,6 +17,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
 
   # requirements.txt is the product: the pinned docs toolchain this image ships.
   # A bump here is a new image tag, so these PRs are releases, not chores.
@@ -22,3 +26,5 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
