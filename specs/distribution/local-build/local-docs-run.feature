@@ -8,6 +8,7 @@ Feature: Running the docs image against the current folder
   @id:distribution.local-build.001 @rule:distribution.local.run-uses-current-folder @inferred @source:Makefile#run
   Scenario Outline: Running the image works on the current folder and forwards the chosen mkdocs subcommand
     Given the author is in a folder containing mkdocs.yml
+    And the folder is writable by the image's uid 10001
     When the author runs make run with ARGS="<args>"
     Then the image is built first
     And the current folder is mounted as the docs project

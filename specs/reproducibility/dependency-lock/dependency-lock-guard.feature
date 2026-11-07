@@ -12,7 +12,7 @@ Feature: Refusing to build from a stale lockfile
     Then no image is built
     And the output reads "requirements.lock is stale, missing: mkdocs-material==9.8.0"
     And the output reads "run: make lock"
-    And the command exits with status 1
+    And make stops with an error, exiting non-zero
 
     Examples:
       | verb  |

@@ -25,6 +25,7 @@ Feature: Previewing and building docs with the image
   Scenario: Plugins that read git history work inside the container
     Given the mounted project is a git checkout
     And the project enables git-revision-date-localized or publishes versions with mike
+    And the container runs as the caller's own uid and gid
     When the docs author builds the docs with the image
     Then the git command is available to those plugins inside the container
     And pages carry their git revision dates instead of failing for lack of git

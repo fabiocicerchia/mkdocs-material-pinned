@@ -6,6 +6,7 @@ Feature: Tagging and releasing the image by its mkdocs-material version
   Scenario: The image tag defaults to a version that no longer matches the bundled mkdocs-material
     Given the pin list names mkdocs-material==9.8.0
     And the maintainer does not set VERSION
+    And the lockfile matches the pin list
     When the maintainer builds the image
     Then the image is tagged ghcr.io/fabiocicerchia/mkdocs-material-pinned:9.7.7
 

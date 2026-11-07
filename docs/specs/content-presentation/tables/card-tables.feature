@@ -9,7 +9,7 @@ Feature: Card-styled tables
   Scenario: Tables appear as rounded cards with compact uppercase headers
     When a reader views the page
     Then the table has rounded corners and a hairline border
-    And column headers are shown in small, bold, letter-spaced capitals
+    And column headers are shown in small, semi-bold, letter-spaced capitals
 
   @id:docs.content-presentation.tables.002 @rule:content-presentation.tables.wide-table-overflow @inferred @source:docs/stylesheets/extra.css#.md-typeset table:not([class]) @questionable
   Scenario: A table wider than the screen is cut off at the card edge

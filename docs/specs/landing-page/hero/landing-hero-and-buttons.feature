@@ -10,7 +10,7 @@ Feature: Landing page hero and calls to action
     When a visitor opens the home page
     Then the hero title and tagline are centred
     And the title is filled with a gradient from the first to the second accent colour
-    And the tagline is shown in a lighter text colour and no wider than about 42 characters' width per line
+    And the tagline is shown in a lighter text colour and no wider than 42rem
 
   @id:docs.landing-page.hero.002 @rule:landing-page.call-to-action.pill-buttons-lift-on-hover @inferred @source:docs/stylesheets/extra.css#.md-typeset .md-button @questionable
   Scenario: Call-to-action buttons are pills, and the primary one is gradient-filled

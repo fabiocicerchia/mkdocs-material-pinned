@@ -7,7 +7,7 @@ Feature: Scanning the tree the way CI does
     Given trivy is not installed
     When the maintainer runs make analyze
     Then the error output reads "analyze needs trivy: https://trivy.dev/latest/getting-started/installation/"
-    And the command exits with status 69
+    And make stops with an error, exiting non-zero
 
   @id:security.security-scanning.002 @rule:security.scanning.critical-and-high-only @inferred @source:Makefile#analyze
   Scenario: The scan reports only critical and high findings across vulnerabilities, misconfigurations and secrets
