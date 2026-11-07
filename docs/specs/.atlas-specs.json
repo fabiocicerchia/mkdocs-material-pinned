@@ -1,0 +1,291 @@
+{
+ "excluded": {
+  "stylesheets/extra": [
+   {
+    "candidate": "Header is translucent and blurred with a hairline divider, gaining a soft shadow when scrolled",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-header"
+   },
+   {
+    "candidate": "Header title bold with tight letter-spacing",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-header__title"
+   },
+   {
+    "candidate": "Navigation tabs dimmed until hovered or active",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-tabs__link"
+   },
+   {
+    "candidate": "Heading weights, kerning and h2 spacing",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-typeset h1"
+   },
+   {
+    "candidate": "Code blocks with rounded corners and a hairline border",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-typeset .highlight"
+   },
+   {
+    "candidate": "Sidebar titles and current page shown bold",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-nav__link--active"
+   },
+   {
+    "candidate": "Footer meta on page background with muted copyright and links",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#.md-footer-meta"
+   },
+   {
+    "candidate": "Smooth scrolling to anchors",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "docs/stylesheets/extra.css#html"
+   },
+   {
+    "candidate": "Mapping of light/dark/primary-light/primary-dark variants all to --accent-2",
+    "covered_by": "branding.accent-palette.one-pair-drives-site-colours",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "docs/stylesheets/extra.css#:root"
+   },
+   {
+    "candidate": "Splash page uses system font stack matching the docs",
+    "covered_by": "site-delivery.offline-assets.system-fonts-only",
+    "reason": "DUPLICATE_OF",
+    "source": "docs/index.html"
+   }
+  ]
+ },
+ "lifted": {
+  "stylesheets/extra": []
+ },
+ "retired": [],
+ "scenarios": {
+  "docs.branding.accent-palette.001": {
+   "file": "docs/specs/branding/accent-palette/accent-palette.feature",
+   "fingerprint": "564588beee72",
+   "human": false,
+   "rule": "branding.accent-palette.one-pair-drives-site-colours",
+   "source": "docs/stylesheets/extra.css#:root",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.branding.accent-palette.002": {
+   "file": "docs/specs/branding/accent-palette/accent-palette.feature",
+   "fingerprint": "564588beee72",
+   "human": false,
+   "rule": "site-delivery.splash.shares-docs-palette",
+   "source": "docs/stylesheets/extra.css#:root",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.branding.color-schemes.001": {
+   "file": "docs/specs/branding/color-schemes/color-schemes.feature",
+   "fingerprint": "433084a194b6",
+   "human": false,
+   "rule": "branding.color-schemes.links-readable-per-scheme",
+   "source": "docs/stylesheets/extra.css#[data-md-color-scheme=\"slate\"]",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.branding.logo.001": {
+   "file": "docs/specs/branding/logo/no-stand-in-logo.feature",
+   "fingerprint": "c702704e5aae",
+   "human": false,
+   "rule": "branding.logo.generic-stand-in-hidden",
+   "source": "docs/stylesheets/extra.css#.md-header__button.md-logo",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.content-presentation.tables.001": {
+   "file": "docs/specs/content-presentation/tables/card-tables.feature",
+   "fingerprint": "721086d36c47",
+   "human": false,
+   "rule": "content-presentation.tables.card-with-compact-headers",
+   "source": "docs/stylesheets/extra.css#.md-typeset table:not([class])",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.content-presentation.tables.002": {
+   "file": "docs/specs/content-presentation/tables/card-tables.feature",
+   "fingerprint": "721086d36c47",
+   "human": false,
+   "rule": "content-presentation.tables.wide-table-overflow",
+   "source": "docs/stylesheets/extra.css#.md-typeset table:not([class])",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.landing-page.feature-cards.001": {
+   "file": "docs/specs/landing-page/feature-cards/feature-cards.feature",
+   "fingerprint": "9606b3669194",
+   "human": false,
+   "rule": "landing-page.feature-cards.accent-icons-and-hover-lift",
+   "source": "docs/stylesheets/extra.css#.md-typeset .grid.cards > ul > li",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.landing-page.hero.001": {
+   "file": "docs/specs/landing-page/hero/landing-hero-and-buttons.feature",
+   "fingerprint": "795e359e9240",
+   "human": false,
+   "rule": "landing-page.hero.centred-gradient-title",
+   "source": "docs/stylesheets/extra.css#.md-typeset .hero",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.landing-page.hero.002": {
+   "file": "docs/specs/landing-page/hero/landing-hero-and-buttons.feature",
+   "fingerprint": "777790f3897f",
+   "human": false,
+   "rule": "landing-page.call-to-action.pill-buttons-lift-on-hover",
+   "source": "docs/stylesheets/extra.css#.md-typeset .md-button",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs.site-delivery.offline-assets.001": {
+   "file": "docs/specs/site-delivery/offline-assets/offline-safe-styling.feature",
+   "fingerprint": "564588beee72",
+   "human": false,
+   "rule": "site-delivery.offline-assets.system-fonts-only",
+   "source": "docs/stylesheets/extra.css#:root",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  }
+ },
+ "taxonomy": {
+  "domains": [
+   {
+    "areas": [
+     {
+      "description": "The single swappable accent colour pair that drives links, chrome, buttons and highlights across the site.",
+      "slug": "accent-palette",
+      "title": "Accent palette"
+     },
+     {
+      "description": "Keeps the header, links and backgrounds legible in both the light and the dark colour scheme.",
+      "slug": "color-schemes",
+      "title": "Light and dark schemes"
+     },
+     {
+      "description": "Controls whether a logo shows in the header and navigation, hiding Material's generic stand-in when the project has none.",
+      "slug": "logo",
+      "title": "Logo"
+     }
+    ],
+    "description": "How the docs site looks as a brand: its colours, colour schemes and identity marks.",
+    "slug": "branding",
+    "title": "Branding & theming"
+   },
+   {
+    "areas": [
+     {
+      "description": "The translucent, blurred top bar with the site title and its divider and shadow states.",
+      "slug": "header",
+      "title": "Header"
+     },
+     {
+      "description": "The top-level section tabs and how their active and hover states are shown.",
+      "slug": "nav-tabs",
+      "title": "Navigation tabs"
+     },
+     {
+      "description": "The side navigation tree, its titles and how the current page is highlighted.",
+      "slug": "sidebar",
+      "title": "Sidebar navigation"
+     },
+     {
+      "description": "The page footer with copyright and previous/next links.",
+      "slug": "footer",
+      "title": "Footer"
+     },
+     {
+      "description": "Smooth scrolling when jumping to anchors and back to the top.",
+      "slug": "scrolling",
+      "title": "Scrolling"
+     }
+    ],
+    "description": "The frame around every page that readers use to move around the documentation.",
+    "slug": "site-chrome",
+    "title": "Site chrome & navigation"
+   },
+   {
+    "areas": [
+     {
+      "description": "The system font stacks, heading weights, spacing and kerning used for body text and code.",
+      "slug": "typography",
+      "title": "Typography"
+     },
+     {
+      "description": "Rounded, bordered presentation of code samples.",
+      "slug": "code-blocks",
+      "title": "Code blocks"
+     },
+     {
+      "description": "Card-styled tables with compact uppercase headers that scroll rather than clip on narrow screens.",
+      "slug": "tables",
+      "title": "Tables"
+     }
+    ],
+    "description": "How the written documentation itself is rendered for reading.",
+    "slug": "content-presentation",
+    "title": "Content presentation"
+   },
+   {
+    "areas": [
+     {
+      "description": "The centred gradient title and tagline at the top of the home page.",
+      "slug": "hero",
+      "title": "Hero"
+     },
+     {
+      "description": "Pill-shaped primary and secondary buttons with gradient fill and hover lift.",
+      "slug": "call-to-action",
+      "title": "Call-to-action buttons"
+     },
+     {
+      "description": "The icon-led grid of feature cards with depth and hover effects.",
+      "slug": "feature-cards",
+      "title": "Feature cards"
+     }
+    ],
+    "description": "The product-style home page that introduces the project.",
+    "slug": "landing-page",
+    "title": "Landing page"
+   },
+   {
+    "areas": [
+     {
+      "description": "Guarantees the styling loads nothing over the network: no CDN, web fonts or analytics.",
+      "slug": "offline-assets",
+      "title": "Offline-safe assets"
+     },
+     {
+      "description": "Shares one stylesheet and palette between the standalone splash page and the rendered docs so they cannot drift apart.",
+      "slug": "splash-consistency",
+      "title": "Splash and docs consistency"
+     }
+    ],
+    "description": "How the docs site stays self-contained, consistent and reproducible when published.",
+    "slug": "site-delivery",
+    "title": "Site delivery & privacy"
+   }
+  ]
+ }
+}

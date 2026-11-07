@@ -1,0 +1,578 @@
+{
+ "excluded": {
+  "chart/check": [
+   {
+    "candidate": "Helm runs in a pinned alpine/helm:3.16.2 container, so no local helm install is needed",
+    "covered_by": "",
+    "reason": "TECH_DEVTOOLING",
+    "source": "chart/check.sh#helm"
+   },
+   {
+    "candidate": "Script changes into its own directory so it can be run from anywhere",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "chart/check.sh"
+   },
+   {
+    "candidate": "Release name 't' used when rendering",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "chart/check.sh"
+   }
+  ],
+  "mkdocs-material-pinned/dockerfile": [
+   {
+    "candidate": "All package installs and cleanup happen in a single image layer",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Dockerfile#RUN"
+   },
+   {
+    "candidate": "apt lists and the copied lockfile are removed after install",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Dockerfile#RUN"
+   },
+   {
+    "candidate": "git installed with --no-install-recommends",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Dockerfile#RUN"
+   },
+   {
+    "candidate": "pip install with --no-cache-dir",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Dockerfile#RUN"
+   },
+   {
+    "candidate": "The docs user gets a home directory (useradd -m)",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "Dockerfile#RUN"
+   },
+   {
+    "candidate": "entrypoint.sh is copied to /usr/local/bin and set as ENTRYPOINT (its forwarding and error-hint behaviour belong to the entrypoint module)",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "Dockerfile#ENTRYPOINT"
+   },
+   {
+    "candidate": "EXPOSE 8000 as a separate rule",
+    "covered_by": "docs.preview.default-serve-on-port-8000",
+    "reason": "DUPLICATE_OF",
+    "source": "Dockerfile#EXPOSE"
+   },
+   {
+    "candidate": "Base image is Python 3.14 on Debian bookworm slim",
+    "covered_by": "security.supply-chain.base-image-pinned-by-digest",
+    "reason": "DUPLICATE_OF",
+    "source": "Dockerfile#FROM"
+   }
+  ],
+  "mkdocs-material-pinned/entrypoint": [
+   {
+    "candidate": "Default command serves on 0.0.0.0:8000",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Dockerfile CMD"
+   },
+   {
+    "candidate": "Successful build/gh-deploy exits 0 with mkdocs' own output",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "Use of `set -u` and `${1:-}` for an empty argument list",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "Entrypoint copied into the image and set as ENTRYPOINT",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Dockerfile ENTRYPOINT"
+   },
+   {
+    "candidate": "Smoke test builds with --user and checks the hint",
+    "covered_by": "",
+    "reason": "TECH_DEVTOOLING",
+    "source": "test.sh"
+   },
+   {
+    "candidate": "A build that cannot write into the docs folder explains the uid and the fix",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "An unwritable docs folder never produces a site somewhere else",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "A build failing in a writable folder shows only mkdocs' own error",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "Any build failure in a read-only docs folder shows the permission hint",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "Commands other than build and gh-deploy go straight to mkdocs",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "entrypoint.sh#entrypoint.sh"
+   },
+   {
+    "candidate": "Stopping the container stops the live preview straight away",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "entrypoint.sh#entrypoint.sh"
+   }
+  ],
+  "mkdocs-material-pinned/makefile": [
+   {
+    "candidate": "make lint runs every pre-commit hook on every file",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#lint"
+   },
+   {
+    "candidate": "make setup installs the pre-commit hook",
+    "covered_by": "",
+    "reason": "TECH_DEVTOOLING",
+    "source": "Makefile#setup"
+   },
+   {
+    "candidate": "make test builds and runs test.sh against the image",
+    "covered_by": "",
+    "reason": "TECH_DEVTOOLING",
+    "source": "Makefile#test"
+   },
+   {
+    "candidate": "make build runs docker build with IMAGE:VERSION",
+    "covered_by": "reproducibility.tagging.default-tag-is-material-version",
+    "reason": "DUPLICATE_OF",
+    "source": "Makefile#build"
+   },
+   {
+    "candidate": "IMAGE, VERSION and PLATFORMS can be overridden from the environment",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#IMAGE"
+   },
+   {
+    "candidate": "lock-check matches pins case-insensitively and ignores spaces and comments",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "Makefile#lock-check"
+   },
+   {
+    "candidate": "lock and lock-check missing from .PHONY",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "Makefile#.PHONY"
+   }
+  ]
+ },
+ "lifted": {
+  "chart/check": [],
+  "mkdocs-material-pinned/dockerfile": [
+   {
+    "from_source": "Dockerfile#RUN",
+    "rule": "security.supply-chain.packages-must-match-locked-hashes"
+   },
+   {
+    "from_source": "Dockerfile#FROM",
+    "rule": "security.supply-chain.base-image-pinned-by-digest"
+   },
+   {
+    "from_source": "Dockerfile#USER",
+    "rule": "security.runtime.runs-as-uid-10001"
+   }
+  ],
+  "mkdocs-material-pinned/entrypoint": [],
+  "mkdocs-material-pinned/makefile": [
+   {
+    "from_source": "Makefile#lock-check",
+    "rule": "reproducibility.lock.stale-lock-refuses-build"
+   },
+   {
+    "from_source": "Makefile#VERSION",
+    "rule": "reproducibility.tagging.default-tag-is-material-version"
+   }
+  ]
+ },
+ "retired": [],
+ "scenarios": {
+  "developer-tooling.command-catalogue.001": {
+   "file": "specs/developer-tooling/command-catalogue/make-verbs.feature",
+   "fingerprint": "517de792f113",
+   "human": false,
+   "rule": "tooling.catalogue.bare-make-lists-verbs",
+   "source": "Makefile#help",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "developer-tooling.command-catalogue.002": {
+   "file": "specs/developer-tooling/command-catalogue/make-verbs.feature",
+   "fingerprint": "a675569d9b1e",
+   "human": false,
+   "rule": "tooling.quality-gate.format-tolerates-fixes",
+   "source": "Makefile#format",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "distribution.kubernetes-chart.001": {
+   "file": "specs/distribution/kubernetes-chart/chart-validation.feature",
+   "fingerprint": "74d90975d59c",
+   "human": false,
+   "rule": "distribution.kubernetes-chart.check-passes-on-valid-chart",
+   "source": "chart/check.sh#helm",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "distribution.kubernetes-chart.002": {
+   "file": "specs/distribution/kubernetes-chart/chart-validation.feature",
+   "fingerprint": "74d90975d59c",
+   "human": false,
+   "rule": "distribution.kubernetes-chart.check-fails-on-broken-chart",
+   "source": "chart/check.sh#helm",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "distribution.local-build.001": {
+   "file": "specs/distribution/local-build/local-docs-run.feature",
+   "fingerprint": "e725b3c1b8cd",
+   "human": false,
+   "rule": "distribution.local.run-uses-current-folder",
+   "source": "Makefile#run",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "distribution.local-build.002": {
+   "file": "specs/distribution/local-build/local-docs-run.feature",
+   "fingerprint": "61700039fdeb",
+   "human": false,
+   "rule": "distribution.installation.pull-version-tag",
+   "source": "Makefile#install",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs-site.live-preview.001": {
+   "file": "specs/docs-site/live-preview/docs-container-defaults.feature",
+   "fingerprint": "08f604e40c50",
+   "human": false,
+   "rule": "docs.preview.default-serve-on-port-8000",
+   "source": "Dockerfile#CMD",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs-site.live-preview.002": {
+   "file": "specs/docs-site/live-preview/docs-container-defaults.feature",
+   "fingerprint": "4d9751c79edf",
+   "human": false,
+   "rule": "docs.build.mounted-project-builds-site",
+   "source": "Dockerfile#WORKDIR",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "docs-site.live-preview.003": {
+   "file": "specs/docs-site/live-preview/docs-container-defaults.feature",
+   "fingerprint": "99396910e12e",
+   "human": false,
+   "rule": "docs.plugins.git-available-for-revision-and-versioning",
+   "source": "Dockerfile#RUN",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "reproducibility.dependency-lock.001": {
+   "file": "specs/reproducibility/dependency-lock/dependency-lock-guard.feature",
+   "fingerprint": "266412555a54",
+   "human": false,
+   "rule": "reproducibility.lock.stale-lock-refuses-build",
+   "source": "Makefile#lock-check",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "reproducibility.dependency-lock.002": {
+   "file": "specs/reproducibility/dependency-lock/dependency-lock-guard.feature",
+   "fingerprint": "480d823fb327",
+   "human": false,
+   "rule": "reproducibility.lock.regenerate-from-pins",
+   "source": "Makefile#lock",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "reproducibility.dependency-lock.003": {
+   "file": "specs/reproducibility/dependency-lock/dependency-lock-guard.feature",
+   "fingerprint": "ec888f7c2110",
+   "human": false,
+   "rule": "reproducibility.lock.release-skips-lock-check",
+   "source": "Makefile#release",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "reproducibility.version-tagging.001": {
+   "file": "specs/reproducibility/version-tagging/image-version-tagging.feature",
+   "fingerprint": "c567678aad36",
+   "human": false,
+   "rule": "reproducibility.tagging.default-tag-is-material-version",
+   "source": "Makefile#VERSION",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "reproducibility.version-tagging.002": {
+   "file": "specs/reproducibility/version-tagging/image-version-tagging.feature",
+   "fingerprint": "ec888f7c2110",
+   "human": false,
+   "rule": "reproducibility.tagging.release-version-and-latest",
+   "source": "Makefile#release",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "reproducibility.version-tagging.003": {
+   "file": "specs/reproducibility/version-tagging/image-version-tagging.feature",
+   "fingerprint": "b755c349f1bc",
+   "human": false,
+   "rule": "distribution.publishing.push-version-tag-only",
+   "source": "Makefile#push",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "security.non-root-runtime.001": {
+   "file": "specs/security/non-root-runtime/non-root-container.feature",
+   "fingerprint": "6a06fe9e8bc6",
+   "human": false,
+   "rule": "security.runtime.runs-as-uid-10001",
+   "source": "Dockerfile#USER",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "security.security-scanning.001": {
+   "file": "specs/security/security-scanning/local-security-scan.feature",
+   "fingerprint": "eee6cffaed8d",
+   "human": false,
+   "rule": "security.scanning.requires-trivy",
+   "source": "Makefile#analyze",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "security.security-scanning.002": {
+   "file": "specs/security/security-scanning/local-security-scan.feature",
+   "fingerprint": "eee6cffaed8d",
+   "human": false,
+   "rule": "security.scanning.critical-and-high-only",
+   "source": "Makefile#analyze",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "security.supply-chain-integrity.001": {
+   "file": "specs/security/supply-chain-integrity/tamper-resistant-image-build.feature",
+   "fingerprint": "99396910e12e",
+   "human": false,
+   "rule": "security.supply-chain.packages-must-match-locked-hashes",
+   "source": "Dockerfile#RUN",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "security.supply-chain-integrity.002": {
+   "file": "specs/security/supply-chain-integrity/tamper-resistant-image-build.feature",
+   "fingerprint": "a18d7880c5df",
+   "human": false,
+   "rule": "security.supply-chain.base-image-pinned-by-digest",
+   "source": "Dockerfile#FROM",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "user-experience.image-metadata.001": {
+   "file": "specs/user-experience/image-metadata/image-metadata.feature",
+   "fingerprint": "396dc477f33e",
+   "human": false,
+   "rule": "image.metadata.oci-labels",
+   "source": "Dockerfile#LABEL",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "user-experience.image-metadata.002": {
+   "file": "specs/user-experience/image-metadata/image-metadata.feature",
+   "fingerprint": "a206ee653cf4",
+   "human": false,
+   "rule": "image.metadata.licence-notice-shipped",
+   "source": "Dockerfile#COPY",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  }
+ },
+ "taxonomy": {
+  "domains": [
+   {
+    "areas": [
+     {
+      "description": "Serving the docs with live reload on port 8000 by default, reachable from the host.",
+      "slug": "live-preview",
+      "title": "Live preview"
+     },
+     {
+      "description": "Building the docs into a static site and deploying it, e.g. to GitHub Pages.",
+      "slug": "static-build",
+      "title": "Static build"
+     },
+     {
+      "description": "Material theme plus the common plugins and git support they need (revision dates, versioning with mike).",
+      "slug": "bundled-plugins",
+      "title": "Bundled plugins"
+     }
+    ],
+    "description": "What a user gets from running the image against their documentation.",
+    "slug": "docs-site",
+    "title": "Docs site"
+   },
+   {
+    "areas": [
+     {
+      "description": "Every package, base image and tool is pinned so builds never drift with upstream releases.",
+      "slug": "version-pinning",
+      "title": "Version pinning"
+     },
+     {
+      "description": "Generating the hashed lockfile from the pin list and refusing to build when it is stale.",
+      "slug": "dependency-lock",
+      "title": "Dependency lock"
+     },
+     {
+      "description": "The image tag mirrors the bundled mkdocs-material version, with a latest alias.",
+      "slug": "version-tagging",
+      "title": "Version tagging"
+     }
+    ],
+    "description": "Guarantees that the same image tag always produces the same docs toolchain.",
+    "slug": "reproducibility",
+    "title": "Reproducibility"
+   },
+   {
+    "areas": [
+     {
+      "description": "The container runs as a fixed unprivileged user rather than root.",
+      "slug": "non-root-runtime",
+      "title": "Non-root runtime"
+     },
+     {
+      "description": "Hash-verified package installs and digest-pinned base image so tampered artifacts are rejected.",
+      "slug": "supply-chain-integrity",
+      "title": "Supply-chain integrity"
+     },
+     {
+      "description": "Scanning the tree for vulnerabilities, misconfigurations and leaked secrets the way CI does.",
+      "slug": "security-scanning",
+      "title": "Security scanning"
+     }
+    ],
+    "description": "How the image limits risk for the people who run and publish it.",
+    "slug": "security",
+    "title": "Security"
+   },
+   {
+    "areas": [
+     {
+      "description": "Explaining unwritable-output failures with the uid in use and the exact command that fixes it, without masking the exit status.",
+      "slug": "error-guidance",
+      "title": "Error guidance"
+     },
+     {
+      "description": "Forwarding any mkdocs subcommand and signals directly so the container behaves like mkdocs itself.",
+      "slug": "command-passthrough",
+      "title": "Command passthrough"
+     },
+     {
+      "description": "Standard image labels for title, description, licence and source, plus the bundled licence notice.",
+      "slug": "image-metadata",
+      "title": "Image metadata"
+     }
+    ],
+    "description": "How the image behaves and communicates when used by hand or in pipelines.",
+    "slug": "user-experience",
+    "title": "User experience"
+   },
+   {
+    "areas": [
+     {
+      "description": "Building and running the image on a developer machine against the current docs folder.",
+      "slug": "local-build",
+      "title": "Local build"
+     },
+     {
+      "description": "Pushing tagged images and multi-architecture releases to the container registry.",
+      "slug": "publishing",
+      "title": "Publishing"
+     },
+     {
+      "description": "Pulling the published image onto a machine.",
+      "slug": "installation",
+      "title": "Installation"
+     },
+     {
+      "description": "A Helm chart for deploying the image, validated by linting and rendering its templates.",
+      "slug": "kubernetes-chart",
+      "title": "Kubernetes chart"
+     }
+    ],
+    "description": "Getting the image built and into users' hands.",
+    "slug": "distribution",
+    "title": "Distribution"
+   },
+   {
+    "areas": [
+     {
+      "description": "A self-documenting set of make verbs that lists every available task.",
+      "slug": "command-catalogue",
+      "title": "Command catalogue"
+     },
+     {
+      "description": "Running and installing the pre-commit hooks that gate every change, and auto-fixing what they can.",
+      "slug": "quality-gate",
+      "title": "Quality gate"
+     },
+     {
+      "description": "Building the image and exercising it with the smoke test suite.",
+      "slug": "smoke-tests",
+      "title": "Smoke tests"
+     }
+    ],
+    "description": "The contributor workflow for keeping the repo healthy.",
+    "slug": "developer-tooling",
+    "title": "Developer tooling"
+   }
+  ]
+ }
+}
