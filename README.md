@@ -1,5 +1,11 @@
 # mkdocs-material-pinned
 
+> [!WARNING]
+> **This project is retired** and no longer maintained. Use [Material for
+> MkDocs](https://github.com/squidfunk/mkdocs-material) directly: its own image,
+> `squidfunk/mkdocs-material`, is published with a tag for every release, so a
+> docs build can pin an exact version without this wrapper.
+
 [![CI](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/ci.yml/badge.svg)](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/ci.yml)
 [![Code Quality](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/code-quality.yml/badge.svg)](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/code-quality.yml)
 [![Security](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/security.yml/badge.svg)](https://github.com/fabiocicerchia/mkdocs-material-pinned/actions/workflows/security.yml)
